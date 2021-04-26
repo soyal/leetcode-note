@@ -10,76 +10,60 @@
  * @param {number} turnedOn
  * @return {string[]}
  */
-/**
- * @param {number} turnedOn
- * @return {string[]}
- */
 var readBinaryWatch = function (turnedOn) {
   const hours = [1, 2, 4, 8]
   const minutes = [1, 2, 4, 8, 16, 32]
 
   const result = []
-  function readBinaryWatchRecurse(
+
+  function readBinaryWatchRecursive(
     _turnedOn,
-    visitedHours,
-    visitedMinutes,
-    hourResult,
-    minuteResult,
-    startHourIndex,
-    startMinuteIndex
+    tempHours,
+    tempMinutes,
+    hourStartIndex,
+    minuteStarIndex
   ) {
     if (_turnedOn === 0) {
       result.push(
-        `${hourResult}:${minuteResult > 9 ? minuteResult : '0' + minuteResult}`
+        `${tempHours}:${tempMinutes > 9 ? tempMinutes : '0' + tempMinutes}`
       )
       return
     }
 
-    for (let i = startMinuteIndex; i < minutes.length; i++) {
+    for (let i = minuteStarIndex; i < minutes.length; i++) {
       const currMinute = minutes[i]
-      if (!visitedMinutes[currMinute]) {
-        if (minuteResult + currMinute > 59) break
-
-        minuteResult = minuteResult + currMinute
-        visitedMinutes[currMinute] = true
-        readBinaryWatchRecurse(
+      if (currMinute + tempMinutes <= 59) {
+        readBinaryWatchRecursive(
           _turnedOn - 1,
-          visitedHours,
-          visitedMinutes,
-          hourResult,
-          minuteResult,
-          startHourIndex,
-          startMinuteIndex + 1
+          tempHours,
+          tempMinutes + currMinute,
+          hourStartIndex,
+          i + 1
         )
-        minuteResult = minuteResult - currMinute
-        delete visitedMinutes[currMinute]
       }
     }
 
-    for (let i = startHourIndex; i < hours.length; i++) {
+    for (let i = hourStartIndex; i < hours.length; i++) {
       const currHour = hours[i]
-      if (!visitedHours[currHour]) {
-        if (hourResult + currHour > 11) break
-        hourResult = hourResult + currHour
-        visitedHours[currHour] = true
-        readBinaryWatchRecurse(
+      if (currHour + tempHours <= 11) {
+        readBinaryWatchRecursive(
           _turnedOn - 1,
-          visitedHours,
-          visitedMinutes,
-          hourResult,
-          minuteResult,
-          startHourIndex + 1,
-          startMinuteIndex
+          tempHours + currHour,
+          tempMinutes,
+          i + 1,
+          minutes.length
         )
-        hourResult = hourResult - currHour
-        delete visitedHours[currHour]
       }
     }
   }
 
-  readBinaryWatchRecurse(turnedOn, {}, {}, 0, 0, 0, 0)
+  readBinaryWatchRecursive(turnedOn, 0, 0, 0, 0)
 
   return result
 }
 
-readBinaryWatch(2)
+/**
+ * 题解
+ * 回溯法
+ * 可以把minute和hour合成一个数组来看，但是在处理上要做对应的调整
+ */
