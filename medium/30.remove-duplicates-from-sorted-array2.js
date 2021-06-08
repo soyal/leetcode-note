@@ -27,6 +27,8 @@
  * 有点类似快慢指针
  * 就是拿一个指针指向要设置的index，称为slowPoint，然后判定nums[i]与nums[slowPoint-2]相不相等，不相等即是要设置的值
  * 
+ * 想要快速理解这个思路，可以想象下经过处理后的数组的形态，必定是nums[i]与nums[i-2]不相等的
+ * 
  * @param {number[]} nums
  * @return {number}
  */
