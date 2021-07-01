@@ -3,3 +3,4 @@
 
 ## 第一遍没思路
 [44.palindrome-partitioning.js](./medium/44.palindrome-partitioning.js)
+[45.word-break.js](./medium/45.word-break.js)
