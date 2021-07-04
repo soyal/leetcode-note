@@ -3,7 +3,9 @@ function ListNode(val, next) {
   this.next = next === undefined ? null : next
 }
 
-function generateList(arr) {
+exports.ListNode = ListNode
+
+exports.generateList = function generateList(arr) {
   const head = new ListNode(arr[0])
   let pointer = head
 
@@ -15,4 +17,3 @@ function generateList(arr) {
   return head
 }
 
-module.exports = generateList
