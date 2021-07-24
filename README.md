@@ -10,3 +10,4 @@
 
 ## 需要复习的题
 [52.implement-trie-prefix-tree.js](./medium/52.implement-trie-prefix-tree.js)
+[54.design-add-and-search-data-structrue.js](./medium/54.design-add-and-search-data-structrue.js)
