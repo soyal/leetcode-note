@@ -10,6 +10,7 @@
 [53.minimum-size-subarray-sum.js](./medium/53.minimum-size-subarray-sum.js)
 [54.design-add-and-search-data-structrue.js](./medium/54.design-add-and-search-data-structrue.js)
 [56.maximal-square.js](./medium/56.maximal-square.js)
+[60.lowest-common-ancestor-of-a-binary-tree.js](./medium/60.lowest-common-ancestor-of-a-binary-tree.js)
 
 ## 专项 
 【摩尔计数法】
